@@ -21,7 +21,7 @@ class _CommonDrawerState extends State<CommonDrawer> {
             padding: const EdgeInsets.only(top: 40, left: 10, right: 10),
             child: Center(
               child: Text(
-                "Hi Vinil",
+                "Hi Geethu",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),

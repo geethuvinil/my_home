@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:graphview/GraphView.dart';
 import 'package:my_home_app/common_widgets/common_drawer.dart';
+import 'package:my_home_app/screens/treeview_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -9,6 +11,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final Graph graph = Graph()..isTree = true;
+  BuchheimWalkerConfiguration builder = BuchheimWalkerConfiguration();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,6 +44,31 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       drawer: CommonDrawer(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20,left: 10,right: 10),
+                child: Text("Marathezhuth Family",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 25
+                ),),
+              ),
+            ),
+            Divider(
+              thickness: 1,
+            ),
+            SizedBox(
+              height:MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: TreeViewPage()),
+         
+          ],
+        ),
+      ),
     );
   }
+  
 }
