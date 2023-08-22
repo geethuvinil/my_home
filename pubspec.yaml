@@ -38,17 +38,23 @@ dependencies:
   get: ^4.6.5
   animated_splash_screen: ^1.3.0
   graphview: ^1.2.0
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+flutter_icons:
+   android: "launcher_icon"
+   ios: true
+   image_path: "assets/icons/app_icon.jpg"
+   min_sdk_android: 21
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^2.0.0
+   flutter_lints: ^2.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -63,6 +69,7 @@ flutter:
 
   assets:
      - assets/members_images/
+     - assets/icons/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: AnimatedSplashScreen(splash: Icons.home,
+      home: AnimatedSplashScreen(splash: Image(image: AssetImage("assets/icons/app_icon.jpg"),),
       duration: 2000,
        splashTransition: SplashTransition.fadeTransition,
            
