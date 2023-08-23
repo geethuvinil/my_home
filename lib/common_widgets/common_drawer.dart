@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_home_app/screens/account_screen.dart';
 
 
 class CommonDrawer extends StatefulWidget {
@@ -39,7 +40,7 @@ class _CommonDrawerState extends State<CommonDrawer> {
           drawerListTile(
               tileName: "Account",
               tileIcon: Icons.account_box_rounded,
-             // moveToScreen: () => AccountScreen()
+             moveToScreen: () => AccountScreen()
              ),
           drawerListTile(tileName: "Logout", tileIcon: Icons.logout_rounded)
         ],
@@ -58,7 +59,7 @@ class _CommonDrawerState extends State<CommonDrawer> {
         ),
         onTap: () {
           Get.back();
-          Get.to(() => moveToScreen!());
+         Navigator.push(context, MaterialPageRoute(builder: (context) => moveToScreen!(),));
         },
         title: Text(
           tileName ?? "",

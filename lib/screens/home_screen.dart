@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:graphview/GraphView.dart';
 import 'package:my_home_app/common_widgets/common_drawer.dart';
+import 'package:my_home_app/screens/account_screen.dart';
 import 'package:my_home_app/screens/treeview_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -40,7 +42,9 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
             width: 10,
           ),
-          IconButton(onPressed: (){}, icon: Icon(Icons.account_circle,size: 34,))
+          IconButton(onPressed: (){
+            Get.to(() => AccountScreen());
+          }, icon: Icon(Icons.account_circle,size: 34,))
         ],
       ),
       drawer: CommonDrawer(),
