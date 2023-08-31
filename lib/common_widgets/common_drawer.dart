@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_home_app/screens/account_screen.dart';
+import 'package:my_home_app/screens/documents_screen.dart';
 
 
 class CommonDrawer extends StatefulWidget {
@@ -29,7 +30,8 @@ class _CommonDrawerState extends State<CommonDrawer> {
           )),
           drawerListTile(
               tileName: "Notifications", tileIcon: Icons.notifications),
-          drawerListTile(tileName: "Documents", tileIcon: Icons.edit_document),
+          drawerListTile(tileName: "Documents", tileIcon: Icons.edit_document,
+          moveToScreen: () => DocumentScreen(),),
           drawerListTile(
             tileName: "Payments",
             tileIcon: Icons.account_balance_rounded,
