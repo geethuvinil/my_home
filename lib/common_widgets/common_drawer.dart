@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:my_home_app/screens/account_screen.dart';
 import 'package:my_home_app/screens/documents_screen.dart';
+import 'package:my_home_app/screens/payments_screen.dart';
 
 
 class CommonDrawer extends StatefulWidget {
@@ -35,16 +37,19 @@ class _CommonDrawerState extends State<CommonDrawer> {
           drawerListTile(
             tileName: "Payments",
             tileIcon: Icons.account_balance_rounded,
+            moveToScreen: () => PaymentScreen(),
           ),
           drawerListTile(
               tileName: "Add more family",
-              tileIcon: Icons.family_restroom_rounded),
+              tileIcon: Icons.family_restroom_rounded,
+             ),
           drawerListTile(
               tileName: "Account",
               tileIcon: Icons.account_box_rounded,
              moveToScreen: () => AccountScreen()
              ),
-          drawerListTile(tileName: "Logout", tileIcon: Icons.logout_rounded)
+          drawerListTile(tileName: "Logout", tileIcon: Icons.logout_rounded,
+          moveToScreen: () => logoutPopUp(),)
         ],
       ),
     );
@@ -61,7 +66,8 @@ class _CommonDrawerState extends State<CommonDrawer> {
         ),
         onTap: () {
           Get.back();
-         Navigator.push(context, MaterialPageRoute(builder: (context) => moveToScreen!(),));
+          Get.to(moveToScreen!());
+         //Navigator.push(context, MaterialPageRoute(builder: (context) => moveToScreen!(),));
         },
         title: Text(
           tileName ?? "",
@@ -70,6 +76,21 @@ class _CommonDrawerState extends State<CommonDrawer> {
           ),
         ),
       ),
+    );
+  }
+  logoutPopUp(){
+    return showDialog(context: context, 
+    builder: (context) => AlertDialog(
+      title: Text("Do you  want to exit from the app?"),
+actions: [
+  ElevatedButton(onPressed: (){
+    Get.back();
+  }, child: Text("No")),
+    ElevatedButton(onPressed: (){
+      SystemNavigator.pop();
+    }, child: Text("Yes"))
+],
+       ),
     );
   }
 }

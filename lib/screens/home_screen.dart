@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:graphview/GraphView.dart';
 import 'package:my_home_app/common_widgets/common_drawer.dart';
@@ -48,31 +49,49 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       drawer: CommonDrawer(),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 20,left: 10,right: 10),
-                child: Text("Marathezhuth Family",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 25
-                ),),
+      body: WillPopScope(
+        onWillPop: showExitPopUp,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 20,left: 10,right: 10),
+                  child: Text("Marathezhuth Family",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25
+                  ),),
+                ),
               ),
-            ),
-            Divider(
-              thickness: 1,
-            ),
-            SizedBox(
-              height:MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              child: TreeViewPage()),
-         
-          ],
+              Divider(
+                thickness: 1,
+              ),
+              SizedBox(
+                height:MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: TreeViewPage()),
+           
+            ],
+          ),
         ),
       ),
     );
   }
   
+  Future<bool> showExitPopUp() async{
+    return await showDialog(
+      context: context,
+       builder: (context) => AlertDialog(
+title: Text("Do you really want to exit from the app?"),
+actions: [
+  ElevatedButton(onPressed: (){
+    Get.back();
+  }, child: Text("No")),
+    ElevatedButton(onPressed: (){
+      SystemNavigator.pop();
+    }, child: Text("Yes"))
+],
+       ),);
+  }
 }
