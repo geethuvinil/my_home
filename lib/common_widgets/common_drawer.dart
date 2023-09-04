@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:my_home_app/screens/account_screen.dart';
+import 'package:my_home_app/screens/addMoreFamily_screen.dart';
 import 'package:my_home_app/screens/documents_screen.dart';
 import 'package:my_home_app/screens/payments_screen.dart';
 
@@ -42,6 +43,7 @@ class _CommonDrawerState extends State<CommonDrawer> {
           drawerListTile(
               tileName: "Add more family",
               tileIcon: Icons.family_restroom_rounded,
+              moveToScreen: () => AddMoreFamilyScreen()
              ),
           drawerListTile(
               tileName: "Account",
