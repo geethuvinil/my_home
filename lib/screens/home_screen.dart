@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:graphview/GraphView.dart';
 import 'package:my_home_app/common_widgets/common_drawer.dart';
 import 'package:my_home_app/screens/account_screen.dart';
+import 'package:my_home_app/screens/notification_screen.dart';
 import 'package:my_home_app/screens/treeview_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -35,7 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
             width: 10,
           ),
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                 Get.to(() => NotificationScreen());
+              },
               icon: Icon(
                 Icons.notifications_active_sharp,
                 size: 34,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AddMoreFamilyScreen extends StatefulWidget {
   const AddMoreFamilyScreen({super.key});
@@ -134,7 +135,9 @@ class _AddMoreFamilyScreenState extends State<AddMoreFamilyScreen> {
                       padding: const EdgeInsets.only(
                           top: 20, left: 90, right: 90, bottom: 30),
                       child: ElevatedButton(
-                          onPressed: () {}, child: Text("Cancel")),
+                          onPressed: () {
+                            Get.back();
+                          }, child: Text("Cancel")),
                     )
                   ],
                 ),

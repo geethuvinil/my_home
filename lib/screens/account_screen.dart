@@ -1,5 +1,6 @@
 import 'package:avatar_view/avatar_view.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AccountScreen extends StatefulWidget {
   const AccountScreen({super.key});
@@ -9,38 +10,62 @@ class AccountScreen extends StatefulWidget {
 }
 
 class _AccountScreenState extends State<AccountScreen> {
+  List<XFile>? images;
+  Future<dynamic> addProfileImage() async {
+    final imagePicker = ImagePicker();
+    images = await imagePicker.pickMultiImage();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
         leading: BackButton(),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.edit))],
+        actions: [
+          IconButton(
+              onPressed: () {
+                addProfileImage();
+              },
+              icon: Icon(Icons.edit))
+        ],
       ),
       body: SingleChildScrollView(
           child: Column(
         children: [
-          Container(
-            color: Colors.blue,
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 5, bottom: 25),
-                child: AvatarView(
-                  radius: 100,
-                  borderWidth: 2,
-                  borderColor: Colors.black,
-                  imagePath: "assets/members_images/anju.jpg",
-                  avatarType: AvatarType.CIRCLE,
-                  errorWidget: Container(
-                    child: Icon(
-                      Icons.error,
-                      size: 50,
+          Stack(children: [
+            Container(
+              color: Colors.blue,
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 5, bottom: 25),
+                  child: AvatarView(
+                    onTap: (){
+                      addProfileImage();
+                    },
+                    radius: 100,
+                    borderWidth: 2,
+                    borderColor: Colors.black,
+                    imagePath: "assets/members_images/anju.jpg",
+                    avatarType: AvatarType.CIRCLE,
+                    errorWidget: Container(
+                      child: Icon(
+                        Icons.error,
+                        size: 50,
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
+            Positioned(
+              top: 120,left: 240,
+                child: IconButton(
+                    onPressed: () {
+                      addProfileImage();
+                    },
+                    icon: Icon(Icons.add_a_photo,size: 34,)))
+          ]),
           SizedBox(
             height: 10,
           ),
@@ -55,22 +80,21 @@ class _AccountScreenState extends State<AccountScreen> {
                   titleName: "Address",
                   subTitleName: "abc hashdunujsdjknkju",
                   iconName: Icons.location_on),
-                   accountDetailsTile(
+              accountDetailsTile(
                   titleName: "Phone Number",
                   subTitleName: "0091 9947720297",
                   iconName: Icons.call),
-                   accountDetailsTile(
+              accountDetailsTile(
                   titleName: "Email Id",
                   subTitleName: "avcdmjm@gmail.com",
                   iconName: Icons.mail),
-                   accountDetailsTile(
+              accountDetailsTile(
                   titleName: "Password",
                   subTitleName: "aabbcc1233",
                   iconName: Icons.password),
-                  SizedBox(
-                    height: 20,
-                  )
-                  
+              SizedBox(
+                height: 20,
+              )
             ],
           )
         ],
@@ -94,7 +118,9 @@ class _AccountScreenState extends State<AccountScreen> {
             child: Text(
               subTitleName ?? "",
               style: TextStyle(
-                  fontWeight: FontWeight.w700, fontSize: 15, color: Colors.black),
+                  fontWeight: FontWeight.w700,
+                  fontSize: 15,
+                  color: Colors.black),
             ),
           ),
           leading: Icon(

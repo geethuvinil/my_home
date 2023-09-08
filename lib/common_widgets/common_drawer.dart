@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:my_home_app/screens/account_screen.dart';
 import 'package:my_home_app/screens/addMoreFamily_screen.dart';
 import 'package:my_home_app/screens/documents_screen.dart';
+import 'package:my_home_app/screens/notification_screen.dart';
 import 'package:my_home_app/screens/payments_screen.dart';
 
 
@@ -32,7 +33,8 @@ class _CommonDrawerState extends State<CommonDrawer> {
             ),
           )),
           drawerListTile(
-              tileName: "Notifications", tileIcon: Icons.notifications),
+              tileName: "Notifications", tileIcon: Icons.notifications,
+              moveToScreen: () => NotificationScreen()),
           drawerListTile(tileName: "Documents", tileIcon: Icons.edit_document,
           moveToScreen: () => DocumentScreen(),),
           drawerListTile(
