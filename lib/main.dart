@@ -1,4 +1,5 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_home_app/screens/home_screen.dart';
@@ -6,6 +7,7 @@ import 'package:my_home_app/screens/signup_screen.dart';
 
 void main() {
   runApp(const MyApp());
+  Firebase.initializeApp();
 }
 
 class MyApp extends StatelessWidget {
