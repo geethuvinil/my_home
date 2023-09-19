@@ -18,6 +18,34 @@ class _SignupScreenState extends State<SignupScreen> {
   TextEditingController passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
+  FocusNode? fname;
+  FocusNode? fnumber;
+  FocusNode? faddress;
+  FocusNode? femail;
+  FocusNode? fpassword;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fname = FocusNode();
+    fnumber = FocusNode();
+    faddress = FocusNode();
+    femail = FocusNode();
+    fpassword = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    fname?.dispose();
+    fnumber?.dispose();
+    faddress?.dispose();
+    femail?.dispose();
+    fpassword?.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,127 +69,158 @@ class _SignupScreenState extends State<SignupScreen> {
             SizedBox(
               height: 10,
             ),
-         Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(14.0),
-                  child: TextFormField(
-                    keyboardType: TextInputType.name,
-                    controller: nameController,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "please fill the field";
-                      }
-                    },
-                    decoration: InputDecoration(
-                      hintText: "Enter your name",
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(14.0),
+                    child: TextFormField(
+                      autofocus: true,
+                      focusNode: fname,
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.name,
+                      controller: nameController,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "please fill the field";
+                        }
+                      },
+                      onFieldSubmitted: (value) {
+                        fname?.unfocus();
+                        FocusScope.of(context).requestFocus(femail);
+                      },
+                      decoration: InputDecoration(
+                        hintText: "Enter your name",
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                   padding: const EdgeInsets.all(14.0),
-                  child: TextFormField(
-                    keyboardType: TextInputType.emailAddress,
-                    controller: emailController,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "please fill the field";
-                      }
-                    },
-                    decoration: InputDecoration(
-                      hintText: "Enter your email id",
+                  Padding(
+                    padding: const EdgeInsets.all(14.0),
+                    child: TextFormField(
+                      keyboardType: TextInputType.emailAddress,
+                      controller: emailController,
+                      autofocus: true,
+                      focusNode: femail,
+                      textInputAction: TextInputAction.next,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "please fill the field";
+                        }
+                      },
+                         onFieldSubmitted: (value) {
+                        fname?.unfocus();
+                        FocusScope.of(context).requestFocus(fnumber);
+                      },
+                      decoration: InputDecoration(
+                        hintText: "Enter your email id",
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                   padding: const EdgeInsets.all(14.0),
-                  child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    controller: phonenumberController,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "please fill the field";
-                      }
-                    },
-                    decoration: InputDecoration(
-                      hintText: "Enter your phone number",
+                  Padding(
+                    padding: const EdgeInsets.all(14.0),
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: phonenumberController,
+                      autofocus: true,
+                      focusNode: fnumber,
+                      textInputAction: TextInputAction.next,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "please fill the field";
+                        }
+                      },
+                         onFieldSubmitted: (value) {
+                        fname?.unfocus();
+                        FocusScope.of(context).requestFocus(faddress);
+                      },
+                      decoration: InputDecoration(
+                        hintText: "Enter your phone number",
+                      ),
                     ),
                   ),
-                ),
-                 Padding(
-                   padding: const EdgeInsets.all(14.0),
-                  child: TextFormField(
-                    keyboardType: TextInputType.streetAddress,
-                    controller: addressController,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "please fill the field";
-                      }
-                    },
-                    decoration: InputDecoration(
-                      hintText: "Enter your address",
+                  Padding(
+                    padding: const EdgeInsets.all(14.0),
+                    child: TextFormField(
+                      keyboardType: TextInputType.streetAddress,
+                      controller: addressController,
+                      autofocus: true,
+                      focusNode: faddress,
+                      textInputAction: TextInputAction.next,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "please fill the field";
+                        }
+                      },
+                      decoration: InputDecoration(
+                        hintText: "Enter your address",
+                      ),
                     ),
                   ),
-                ),
-             
-                Padding(
-                   padding: const EdgeInsets.all(14.0),
-                  child: TextFormField(
-                    controller: passwordController,
-                    keyboardType: TextInputType.visiblePassword,
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "please fill the field";
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      hintText: "Enter your password",
-                    ),
-                  ),
-                ),
-                // SizedBox(
-                //   child: TextButton(
-                //       onPressed: () async {
-                //         if (_formKey.currentState!.validate()) {
-                //           await SignupRepo().createUser(
-                //               _nameController.text,
-                //               _emailController.text,
-                //               _phonenumberController.text,
-                //               _passwordController.text,
-                //               context);
-                //               Navigator.push(context, MaterialPageRoute(builder: (context) => loginPage(),));
-                              
-                //         }
-                //       },
-                //       child: Text("signup")),
-                // ),
-              ],
-            ),
-          ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10,bottom: 30),
-              child: ElevatedButton(onPressed: ()async{
-if(_formKey.currentState!.validate()){
-  await SignupRepo().createUser(
-    nameController.text, 
-    emailController.text,
-     passwordController.text,
-      addressController.text, 
-      phonenumberController.text, context);
-      Get.to(() => LoginScreen());
-}
 
-              }, child: Text("Submit")),
+                  Padding(
+                    padding: const EdgeInsets.all(14.0),
+                    child: TextFormField(
+                      controller: passwordController,
+                      autofocus: true,
+                      focusNode: fpassword,
+                      textInputAction: TextInputAction.done,
+                      keyboardType: TextInputType.visiblePassword,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return "please fill the field";
+                        }
+                        return null;
+                      },
+                         onFieldSubmitted: (value) {
+                        fname?.unfocus();
+                       
+                      },
+                      decoration: InputDecoration(
+                        labelText: "Password should be greater than 6 letters ",
+                        hintText: "Enter your password",
+                      ),
+                    ),
+                  ),
+                  // SizedBox(
+                  //   child: TextButton(
+                  //       onPressed: () async {
+                  //         if (_formKey.currentState!.validate()) {
+                  //           await SignupRepo().createUser(
+                  //               _nameController.text,
+                  //               _emailController.text,
+                  //               _phonenumberController.text,
+                  //               _passwordController.text,
+                  //               context);
+                  //               Navigator.push(context, MaterialPageRoute(builder: (context) => loginPage(),));
+
+                  //         }
+                  //       },
+                  //       child: Text("signup")),
+                  // ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10, bottom: 30),
+              child: ElevatedButton(
+                  onPressed: () async {
+                    if (_formKey.currentState!.validate()) {
+                      await SignupRepo().createUser(
+                          nameController.text,
+                          emailController.text,
+                          passwordController.text,
+                          addressController.text,
+                          phonenumberController.text,
+                          context);
+                      Get.to(() => LoginScreen());
+                    }
+                  },
+                  child: Text("Submit")),
             )
           ],
         ),
       ),
     );
   }
-
- 
-  
 }
